@@ -1,0 +1,42 @@
+from my_db_engine import *
+
+
+names_list = []
+welcome_message = "Baza danych\
+\nWybierz opcję:\
+\nWyszukaj imie, naciśnij klawisz 1:\
+\nDodaj imie, naciśnij klawisz 2:\
+\nUsuń imie, naciśnij klawisz 3:\
+\nWyświetl liczbę imion, naciśnij klawisz 4:\
+\nWyświetl listę imion, naciśnij klawisz 5:\
+\nZakończ program, naciśnij klawisz 0:\n"
+
+
+def action(note):
+    """
+    :param note: przyjmuje za parametr tekst
+    :return: zwraca przyjęty tekst w formie polecenia
+    """
+    return input(note)
+
+
+response = action(welcome_message)
+
+while response != "0":
+    if response == "1":
+        name = input("Podaj wyszukiwane imię: ")
+        search_name(name)
+    elif response == "2":
+        name = input("Dodaj imie do listy: ")
+        add_to_db(name)
+    elif response == "3":
+        name = input("Podaj imie, ktore chcesz usunac")
+        delete_name(name)
+    elif response == "4":
+        get_names_count()
+    elif response == "5":
+        print_names()
+    else:
+        print_wrong_instruction()
+
+    response = action("Podaj nowe polecenie\n")
