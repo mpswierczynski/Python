@@ -1,0 +1,54 @@
+from silnik_auta import Silnik
+
+class Samochod():
+    def __init__(self, marka, model, nadwozie):
+        self.marka = marka
+        self.model = model
+        self.nadwozie = nadwozie
+        self.silnik = Silnik()
+        self.uszkodzony = False
+        self.przebieg = 0  # uszkodzony gdy przebieg > 100 000
+
+    def ruszaj(self):
+        self.silnik.wlaczony = True
+        print(f"{self.marka} ruszył")
+
+    def zatrzymaj(self):
+        self.silnik.wlaczony = False
+        print(f"{self.marka} zatrzymał się")
+
+    def przebuduj_nadwozie(self, nadwozie):
+        if (self.nadwozie == "combi" and nadwozie == "van"):
+            print("Przykro mi, ale za takie pieniądze się tego nie podejmę.")
+        else:
+            print(f"Zamieniłem {self.nadwozie} na {nadwozie}")
+            self.nadwozie = nadwozie
+
+    def przejedz_km(self, ile):
+        self.ruszaj()
+        self.przebieg += ile
+        print(f"Przejechałeś {ile} km i teraz na liczniku jest {self.przebieg} km")
+        self.czy_uszkodzony()
+        self.zatrzymaj()
+
+    def czy_uszkodzony(self):
+        if self.przebieg > 100000:
+            self.uszkodzony = True
+            print(f"Popsuleś samochód,"
+                  f"bo przejchał {self.przebieg}")
+        return self.uszkodzony
+
+
+mercedes = Samochod(marka="Mercedes",
+                    model="C",
+                    nadwozie="kombi")
+
+# print(mercedes.marka)
+if __name__ == "__main__":
+    mercedes.ruszaj()
+    mercedes.zatrzymaj()
+    mercedes.przebuduj_nadwozie("hatchback")
+    mercedes.przebuduj_nadwozie("combi")
+    mercedes.przebuduj_nadwozie("van")
+
+print(f"Moj samochod jedzie, to {mercedes.silnik.wlaczony}")
