@@ -1,0 +1,72 @@
+
+
+names_list = []
+
+def search_name(name:str()):
+
+    """ Find name of the user, and print the result
+
+    :param name: name of the user that will be looked for
+    :return: True of False zaleznie of tego czy imie jest czy go nie ma wypisuje efekt
+    w konsoli
+    """
+
+    name = str(name).upper()
+    result = name in names_list
+    if result:
+        print("Imię {} jest już w kontaktach".format(name))
+        return True
+    else:
+        print("Imię {} nie zostało odnalezione".format(name))
+        return False
+    pass
+
+
+def add_to_db(name):
+    """Dodaje imię do bazy jesli nie ma go w bazie. Gdy imie istnieje wyswietla komunikat
+
+    :param name: imie uzytkownika ktore chcemy dodac
+    :return: wyswietla czy jest uzytkownik i zwraca wartosc true or false
+    """
+    # result = search_name(name)
+    if search_name(name):
+        return False
+    else:
+        names_list.append(str(name).upper())
+        print("Imię {} zostało dodane do kontaktów".format(name))
+    pass
+
+def delete_name(name):
+    """Funkcja do usuwania uzytkownikow z bazy
+
+    :param name: imie uzytkownika, ktore chcemy usunac
+    :return: True gdy uda sie usunac uzytkownika
+    """
+    if search_name(name):
+        names_list.remove(str(name).upper())
+        print("Imię {} zostało usunięte".format(name))
+        return True
+    else:
+        print("Brak imienia na liście")
+        return False
+
+
+def get_names_count():
+    """Drukuje liczbe imion w bazie"""
+    names_count = str(len(names_list))
+    print(f"Liczba imion na liście to {names_count}")
+
+
+def print_names():
+    """Wypisz imiona w bazie danych"""
+    print(*names_list)
+
+
+def print_wrong_instruction():
+    """Wypisz, ze instrukcja byla nieprawidlowa"""
+    print("Podales zle polecenie, sprobuj ponownie.")
+#
+# if __name__=="__main__":
+#     search_name("OLA")
+#     search_name("GENOWEFA")
+#     search_name("ola")
