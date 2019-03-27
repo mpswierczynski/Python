@@ -1,0 +1,7 @@
+
+
+class Silnik():
+    def __init__(self, pojemnosc = None, paliwo = None):
+        self.pojemnosc = pojemnosc
+        self.paliwo = paliwo
+        self,wlaczony = False
